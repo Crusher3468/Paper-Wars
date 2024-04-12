@@ -9,6 +9,8 @@ var grid_array := []
 var piece_array := []
 var icon_offset := Vector2(32, 32)
 
+var piece_selected = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(100):
@@ -45,9 +47,13 @@ func add_piece(piece_type, location):
 	new_piece.global_position = grid_array[location].global_position + icon_offset
 	piece_array[location] = new_piece
 	new_piece.slot_ID = location
+	new_piece.piece_selected.connect(_on_piece_selected)
 
-
-
+func _on_piece_selected(piece):
+	if not piece_selected:
+		piece_selected = piece
+	else:
+		pass
 
 
 func _on_test_btn_pressed():
