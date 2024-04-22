@@ -21,3 +21,4 @@ func load_icon(piece_name):
 func _on_img_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
 		emit_signal("piece_selected", self)
+

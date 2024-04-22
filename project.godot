@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 DataHandler="*res://DataHandler.gd"
 
+[dotnet]
+
+project/assembly_name="Paper Wars"
+
 [input]
 
 mouse_left={

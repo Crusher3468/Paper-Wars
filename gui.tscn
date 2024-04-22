@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvt84sb5pt4ev"]
+[gd_scene load_steps=3 format=3 uid="uid://bvt84sb5pt4ev"]
 
 [ext_resource type="Script" path="res://GUI.gd" id="1_qiqvp"]
+[ext_resource type="Script" path="res://Bitboard.cs" id="2_241hx"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -60,5 +61,8 @@ offset_right = 1124.0
 offset_bottom = 107.0
 action_mode = 0
 text = "Test"
+
+[node name="Bitboard" type="Node" parent="."]
+script = ExtResource("2_241hx")
 
 [connection signal="pressed" from="TestBtn" to="." method="_on_test_btn_pressed"]

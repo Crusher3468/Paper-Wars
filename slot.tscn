@@ -6,3 +6,13 @@
 custom_minimum_size = Vector2(64, 64)
 color = Color(0.33319, 0.144163, 1.20327e-07, 1)
 script = ExtResource("1_anvwx")
+
+[node name="Filter" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Filter" to="." method="_on_filter_gui_input"]
