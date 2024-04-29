@@ -4,10 +4,15 @@ extends Control
 @onready var board_grid = $Board/BoardGrid
 @onready var piece_scene = preload("res://Piece.tscn")
 @onready var board = $Board
+@onready var turn_tracker = $TurnTracker
+@onready var actions_tracker = $Actions
+@onready var bitboard = $BitBoard
 
 var grid_array := []
 var piece_array := []
 var icon_offset := Vector2(32, 32)
+var player1 = true
+var actions = 3
 
 var piece_selected = null
 
@@ -21,16 +26,21 @@ func _ready():
 		for j in range(10):
 			if j<5:
 				grid_array[i*10+j].set_tile(Color.AQUA)
+				grid_array[i*10+j].set_land_type_water()
 		if colorbit==0:
 			colorbit=1
 		else: colorbit=0
 	
 	piece_array.resize(100)
 	piece_array.fill(0)
+	
+	turn_tracker.text = "Player 1's Turn"
+	actions_tracker.text = str(actions)
 
 func create_slot():
 	var new_slot = slot_scene.instantiate()
 	new_slot.slot_ID = grid_array.size()
+	new_slot.land_type = "land"
 	board_grid.add_child(new_slot)
 	grid_array.push_back(new_slot)
 	new_slot.slot_clicked.connect(_on_slot_clicked)
@@ -38,8 +48,15 @@ func create_slot():
 func _on_slot_clicked(slot):
 	if not piece_selected:
 		return
-	move_piece(piece_selected, slot.slot_ID)
+	var piece_enum = piece_selected.type
+	if piece_enum == DataHandler.PieceNames.TANK && slot.land_type == "land" :
+		move_piece(piece_selected, slot.slot_ID)
+	if piece_enum == DataHandler.PieceNames.BOAT && slot.land_type == "water" :
+		move_piece(piece_selected, slot.slot_ID)
+	if piece_enum == DataHandler.PieceNames.PLANE :
+		move_piece(piece_selected, slot.slot_ID)
 	piece_selected = null
+	
 	
 func move_piece(piece, location):
 	if (piece_array[location]):
@@ -51,6 +68,7 @@ func move_piece(piece, location):
 	piece_array[piece.slot_ID] = 0
 	piece_array[location]= piece
 	piece.slot_ID = location
+	use_action()
 
 func add_piece(piece_type, location):
 	var new_piece = piece_scene.instantiate()
@@ -75,6 +93,28 @@ func set_board_filter(bitmap:int):
 		bitmap = bitmap >> 1
 
 func _on_test_btn_pressed():
-	add_piece(DataHandler.PieceNames.PLANE, 10)
-	add_piece(DataHandler.PieceNames.PLANE, 19)
 
+	bitboard.call("TestFunc")
+	add_piece(DataHandler.PieceNames.BOAT, 10)
+	add_piece(DataHandler.PieceNames.TANK, 19)
+	add_piece(DataHandler.PieceNames.PLANE, 25)
+
+func update_UI():
+	if (player1):
+		turn_tracker.text = "Player 1's Turn"
+		actions_tracker.text = str(actions)
+	else:
+		turn_tracker.text = "Player 2's Turn"
+		actions_tracker.text = str(actions)
+		
+func use_action():
+	actions = actions - 1
+	actions_tracker.text = str(actions)
+	if (actions <= 0 && player1):
+		player1 = false
+		actions = 3
+		update_UI()
+	else : if (actions <= 0 && !player1):
+		player1 = true
+		actions = 3
+		update_UI()

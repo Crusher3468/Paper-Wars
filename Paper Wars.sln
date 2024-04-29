@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paper Wars", "Paper Wars.csproj", "{FD8E4868-384A-4617-95A7-69993AA3DE02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stub", "..\Stub\Stub.csproj", "{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,14 +21,6 @@ Global
 		{FD8E4868-384A-4617-95A7-69993AA3DE02}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 		{FD8E4868-384A-4617-95A7-69993AA3DE02}.Release|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{FD8E4868-384A-4617-95A7-69993AA3DE02}.Release|Any CPU.Build.0 = ExportRelease|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B83A5A30-7D9A-4BCC-BB56-2974A2AAE767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

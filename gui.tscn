@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvt84sb5pt4ev"]
 
 [ext_resource type="Script" path="res://GUI.gd" id="1_qiqvp"]
-[ext_resource type="Script" path="res://Bitboard.cs" id="2_241hx"]
+[ext_resource type="Script" path="res://BitBoard.cs" id="2_wa6xc"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -62,7 +62,21 @@ offset_bottom = 107.0
 action_mode = 0
 text = "Test"
 
-[node name="Bitboard" type="Node" parent="."]
-script = ExtResource("2_241hx")
+[node name="TurnTracker" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 918.0
+offset_top = 270.0
+offset_right = 1112.0
+offset_bottom = 310.0
+
+[node name="Actions" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 921.0
+offset_top = 312.0
+offset_right = 1107.0
+offset_bottom = 352.0
+
+[node name="BitBoard" type="Node" parent="."]
+script = ExtResource("2_wa6xc")
 
 [connection signal="pressed" from="TestBtn" to="." method="_on_test_btn_pressed"]
