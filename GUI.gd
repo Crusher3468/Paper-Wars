@@ -11,6 +11,7 @@ extends Control
 var grid_array := []
 var piece_array := []
 var icon_offset := Vector2(32, 32)
+var fen = "bbbbbpppttt/10/10/10/10/10/10/10/10/bbbbbpppttt"
 var player1 = true
 var actions = 3
 
@@ -57,7 +58,6 @@ func _on_slot_clicked(slot):
 		move_piece(piece_selected, slot.slot_ID)
 	piece_selected = null
 	
-	
 func move_piece(piece, location):
 	if (piece_array[location]):
 		piece_array[location].queue_free()
@@ -80,6 +80,10 @@ func add_piece(piece_type, location):
 	new_piece.slot_ID = location
 	new_piece.piece_selected.connect(_on_piece_selected)
 
+func parse_fen(fen : String)->void:
+	var boardstate = fen.split(" ")
+	var board_indew := 0
+
 func _on_piece_selected(piece):
 	if not piece_selected:
 		piece_selected = piece
@@ -89,11 +93,11 @@ func _on_piece_selected(piece):
 func set_board_filter(bitmap:int):
 	for i in range(100):
 		if bitmap & 1:
-			grid_array[99-i].set_state(DataHandler.slot_states.FREE)
+			grid_array[i].set_state(DataHandler.slot_states.FREE)
 		bitmap = bitmap >> 1
 
 func _on_test_btn_pressed():
-
+	set_board_filter(1023)
 	bitboard.call("TestFunc")
 	add_piece(DataHandler.PieceNames.BOAT, 10)
 	add_piece(DataHandler.PieceNames.TANK, 19)

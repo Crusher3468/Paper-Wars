@@ -4,6 +4,7 @@ using System;
 public partial class BitBoard : Node
 {
 	// Called when the node enters the scene tree for the first time.
+	public ulong[] pieces = { 0, 0, 0 };
 	public override void _Ready()
 	{
 

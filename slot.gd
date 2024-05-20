@@ -31,6 +31,14 @@ func set_state(color = DataHandler.slot_states.NONE):
 func set_land_type_water():
 	land_type = "water"
 
+func set_filter(color = DataHandler.slot_states.NONE):
+	state=color
+	match color:
+		DataHandler.slot_states.NONE:
+			filter_path.color = Color(0,0,0,0)
+		DataHandler.slot_states.FREE:
+			filter_path.color = Color(0,1,0,0.4)
+	pass
 
 func _on_filter_gui_input(event):
 	if event.is_action_pressed("mouse_left"):
